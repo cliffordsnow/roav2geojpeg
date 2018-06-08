@@ -101,7 +101,7 @@ if __name__ == '__main__':
     
 
     config = ConfigParser.ConfigParser(allow_no_value=True)
-    config.read(HOME+'/.config/roax/config')
+    config.read(HOME+'/.config/roav/config')
 
     if config.has_option('HOME','lat'):
         home_lat = config.get('HOME','lat')
@@ -178,7 +178,7 @@ if __name__ == '__main__':
             rt = timestamp(time.strptime(row[0],ROAV_TIME_FORMAT))
             lat1 = row[1]
             lon1 = row[2]
-            ele = row[7]
+            ele = row[5]
             heading = row[7]
             jpeg = '{}/{}{:03d}.jpeg'.format(tmp,basename(video_file),rownum)
             exif_cmd = '/usr/bin/exiftool -quiet -overwrite_original \

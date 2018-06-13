@@ -90,6 +90,7 @@ if __name__ == '__main__':
 #    Getting defaults out of the way. 
 
     ZERO_PADDING = 3
+    STOPPED = 1
     TIME_FORMAT = "%Y-%m-%dT%H:%M:%S.000000Z"
     ROAV_TIME_FORMAT = "%Y%m%d_%H:%M:%S.000"
     HOME = expanduser("~")
@@ -101,7 +102,7 @@ if __name__ == '__main__':
     
 
     config = ConfigParser.ConfigParser(allow_no_value=True)
-    config.read(HOME+'/.config/roav/config')
+    config.read(HOME+'/.config/roav/roav.conf')
 
     if config.has_option('HOME','lat'):
         home_lat = config.get('HOME','lat')
@@ -193,7 +194,7 @@ if __name__ == '__main__':
                 else:
                     os.system.remove(jpeg)
             else:
-                if distance(lat1, lon1, home_lat, home_lon) > home_buffer and distance(lat, lon, lat1, lon1) > 0:
+                if distance(lat1, lon1, home_lat, home_lon) > home_buffer and distance(lat, lon, lat1, lon1) > STOPPED:
                     os.system(exif_cmd)
                 else:
                     os.system.remove(jpeg)
